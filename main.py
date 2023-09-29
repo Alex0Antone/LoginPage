@@ -1,20 +1,35 @@
+from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.app import App
 
-
+Builder.load_file("LoginPage.kv")
 class LoginPageApp(App):
-    pass
+    def build(self):
+        return QuizManager()
 
-class LoginManager(ScreenManager):
+class QuizManager(ScreenManager):
     pass
 class Question1Screen(Screen):
-    pass
+    def answer_question(self, bool):
+        if bool:
+            self.manager.current = "correct"
+        else:
+            self.manager.current = "error"
 
 class CorrectScreen(Screen):
-    pass
+    def press_button(self):
+        self.manager.current = "question2"
 
 
 class ErrorScreen(Screen):
-    pass
+    def press_button(self):
+        self.manager.current = "question2"
 
-LoginPageApp().run()
+class Question2Screen(Screen):
+    def answer_question(self, heart):
+        if heart.lower() == "deep in the heart of texas":
+            self.manager.current = "question1"
+
+
+if __name__ == "__main__":
+    LoginPageApp().run()

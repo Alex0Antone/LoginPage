@@ -1,4 +1,14 @@
-Question1Screen
+
+
+<QuizManager>
+    Question1Screen:
+        name: "question1"
+    CorrectScreen:
+        name: "correct"
+    ErrorScreen:
+        name: "error"
+    Question2Screen:
+        name: "question2"
 
 <Question1Screen>:
     BoxLayout:
@@ -8,10 +18,14 @@ Question1Screen
         BoxLayout:
             Button:
                 text: "peach"
+                on_release: root.answer_question(False)
             Button:
-                text: "apple"
+                text: "grapefruit"
+                on_press: root.answer_question(True)
             Button:
-                text: "cat"
+                text: "orange"
+                on_release: root.answer_question(False)
+
 
 <CorrectScreen>:
     BoxLayout:
@@ -21,7 +35,7 @@ Question1Screen
         BoxLayout:
             Button:
                 text: "Next"
-
+                on_release: root.press_button()
 <ErrorScreen>:
     BoxLayout:
         orientation: "vertical"
@@ -30,3 +44,18 @@ Question1Screen
         BoxLayout:
             Button:
                 text: "Next"
+                on_release: root.press_button()
+
+<Question2Screen>
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: "Complete the following verse: \n\n'The stars at night are big and bright,________"
+        TextInput:
+            id: heart
+            size_hint: 1, .2
+            hint_text: "enter remaining verse"
+        Button:
+            text: "press enter"
+            on_release: root.answer_question(heart.text)
+
