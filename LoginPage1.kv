@@ -1,0 +1,99 @@
+<LoginManager>
+    MainScreen
+        name: "main"
+    NewAccountScreen
+        name: "new_account"
+    LoggedInScreen
+        name: "logged"
+
+
+<MainScreen>
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: ""
+            id: error
+            color: 1, 0, 0
+        BoxLayout:
+            orientation: "horizontal"
+            Label:
+                text: "Username"
+            TextInput:
+                id: username1
+                hint_text: ""
+        BoxLayout:
+            orientation: "horizontal"
+            Label:
+                text: "Password"
+            TextInput:
+                id: password1
+                hint_text: ""
+        BoxLayout:
+            orientation: "vertical"
+            Button:
+                text: "Register new account"
+                background_color: (0, 0, 0)
+                color: (1, 0, 0)
+                on_release: root.press_button()
+            Button:
+                text: "Enter"
+                on_release: root.login(username1.text, password1.text)
+
+
+
+
+<NewAccountScreen>
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: ""
+            id: incorrect
+            color: 1, 0, 0
+            size_hint: (1, .2)
+        BoxLayout:
+            size_hint: (1, .2)
+            orientation: "horizontal"
+            Label:
+                text: "Username"
+            TextInput:
+                id: username2
+                hint_text: ""
+        BoxLayout:
+            size_hint: (1, .2)
+            orientation: "horizontal"
+            Label:
+                text: "Password"
+            TextInput:
+                id: password2
+                hint_text: ""
+        BoxLayout:
+            size_hint: (1, .2)
+            orientation: "horizontal"
+            Label:
+                text: "Confirm Password"
+            TextInput:
+                id: password3
+                hint_text: ""
+        BoxLayout:
+            orientation: "vertical"
+            Button:
+                size_hint: (1, .2)
+                text: "Return to login page"
+                color: 1, .5, .5
+                background_color: 0, 0, 0
+                on_release: root.press_button()
+            Button:
+                size_hint: (1, .5)
+                text: "Enter"
+                on_release: root.create_account( username2.text, password2.text, password3.text)
+            Label:
+                text: "Password must contain at least one of the following:\n-Capitalized letter (ex. A)\n-Lowercase letter (ex. a)\n-Number (ex. 1) \n-Special character (ex. !) \n -Passwords must match \n -Passwords must be at least 8 characters in length"
+
+
+<LoggedInScreen>
+    BoxLayout:
+        Button:
+            text: "Return to login page"
+            color: 1, .5, .5
+            background_color: 0, 0, 0
+            on_release: root.press_button()
